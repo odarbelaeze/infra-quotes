@@ -1,7 +1,10 @@
-import falcon
+import os
 import random
 
+import falcon
+
 from quotes.content import DEFAULT_QUOTES
+
 
 class Storage(object):
 
@@ -12,7 +15,7 @@ class Storage(object):
         return random.choice(self.quotes)
 
 
-class QuotesResource(object):
+class RandomQuoteResource(object):
 
     def __init__(self):
         self.storage = Storage()
@@ -25,7 +28,8 @@ class QuotesResource(object):
 
 def create_app():
     app = falcon.API()
-    app.add_route('/quotes', QuotesResource())
+    prefix = os.environ.get('QUOTES_PREFIX', '')
+    app.add_route(f'{prefix}/quote/random', RandomQuoteResource())
     return app
 
 
