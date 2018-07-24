@@ -9,7 +9,7 @@ script:
 
 deploy:
     provider: script
-    script: bash ci/docker_push
+    script: bash ci/docker_push.sh
     on:
       branch: master
       repo: odarbelaeze/infra-quotes
