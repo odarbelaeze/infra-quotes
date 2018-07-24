@@ -6,12 +6,16 @@ services:
 script:
     - docker build -t odarbelaeze/quotes:$TRAVIS_COMMIT .
     - docker images
-    - echo $FOO
-    - echo $DOCKER_USERNAME
-    - echo $MY_SECRET_ENV
+
+deploy:
+    provider: script
+    script: bash ci/docker_push
+    on:
+      branch: master
+      repo: odarbelaeze/infra-quotes
 
 env:
     global:
         - secure: DK+7s0csfp6lNf/7pRYD2bmspxaIeEx6xwsrYWPzY9Zepu+3VxtQXjkgbX9qZmqltgky6rsRjyW6zrQ4KTSv7MrZ3wYLhjWc34nW6MR260CKK97sULDAcdN6uQuk6AX7kuSpbqqBrvEGRBMrRP96wM1SMAEZgF4Bz+kCdUs1Osi8iruOTDvk99ZMM1cFcx4yazktrROefhbZGirBQrYf3idGbvRu1CouKB9MAc8V+os9XaE/ur2QfyF+mEfjX8BpRHf9xRdERjseJDQ0Im1j03jOJJSMxhq2Yg6cqRiF5i7SadQc4KwPwirg8OEXWXdkdssIGHLq4J3/TQ0XXGxBwVLL9kKyr4tuM6BAE90skzvNzSUaWRselSJ3C3FU8QwghqTb2/kIAjcNGvHbtbjdapnOGK1deyIuh8FEJnWy1wJ+tpzkrIYcoLyjTCT3JmLCobR+vnEcu0IdkeY8MWB2iub3HQ8GnCF+R7fP8jIuhGtmTWQEJNGkenMyWx9Ev0/O6jUYHUtr4qzHOmKsIEECwsMhtly6uDK9hJEtldfteyfLTEiahryWJSw6wK6J/r/J+9IeEmXewVqb8LK6PXbY31a0ltZ31W07UQfs/W87SYGMdVsHhKYOUxnOMsmoDAATfVvtbWlUQdLN81YczOeEDO2Z5DKIS1VlgcZrZH1N69Y=
         - secure: WPF8F0JE5xthqQY5p3PnpdINj+01Uhl30Snzgam8jqS3HCD5qZ6nh/1/fgB42GeTgdCIMcEazAqAqar0JJ0GJ+5DxhezyyKmzzqrKURSh/S1O+VbhFSbQ/UKPPiEmTfaZLcXyAZ0wVqry0Bsv/ZUp8oZpD38MgpzFIEHe2hVo7bQrliFHntJmg9iD2z0RkoOYVT3sI/kz51DbqeCt3OHeEqWrZ6Z6RDbiyhXuk8Gc5YxdHT+6WSeKaIPHuMc+RIbfzSALexBnD/DRo/EUTqS+RUk5cO6mfjRpXXZ9VSBTz2FuF3VqzDlVEq/2RJ1njAZfOBpUFq0NuGs1x/fvruUeWP1faKwAQ4Upxbp4OJg4IGrdMYrE+g/mJqspQi9xGMhzUyy806UA1oHSYFTgyqcU+g+CEybcq39hseSC6W+ifwTNGa4hY33m5+IcPybftob9p+ekENIhbGfibBjhailaytO0iLZ4uKOCGe7USg5VPukeFejWqg+ObCHHSwL90z219JGyepkPbrj4gqRQjaGX5gmRQS6bY9e78l0fCEseqTtCadPuZ4BS3LHutaoxAYk2AADVNla0WSjLmyTNR2CYnDdswI2PZXi1nM44KAZQpJVFfSvFRXcsI3K6w8s9+/jNdAB5JzMuecYprJZqNlnHEoEEY/A8RV/InXu5Lik8dM=
-
+        - secure: H9V6reZNTD97y2tB+2biXnJsFtaEm7Uhy+QbNGn2CVxDJBvFb3OFUNLiPxf83Wu4vWQWNsuMyK8PAp7DA0gqA/087iiTiWHI8t2gDyIiorr6VHw/pD6aEym3FtZ9ZcUbt0C6S7K5cUw/TaIFJupar168sQzBtpEgHfK9w83K4KAXTuJ+Dkjv64jxGZ3xNZLmmUGaZHYqiWpKxk508RQHqlYYWM5zm3weqpnKqTxu1UZO5AYq3K28b9+mJ2ZGy/yNyhmanvVbBJEldlOm+E34q9gc9CvSrX5SqIm2zfCXwuX5L/nwZu3wiIjO/lP2mkVFrDtoGr4AyQCvoTTO5NRFueSrQtyktsH2xqT0O2G7MAWDBWvnaYB2XcDO1F15tudCdSY5EFGiPI73NIeG7aOjlVTxbFioTRuwHt5SKjcLxzbV/QbN3j1tjL5teSJWdkWMHJ2fQnnCsLmlzbuzyBmOfP5HyMwB+dv0v6FiT9wpa+lKLxJ25mf+wnQ0u7txj7q+sE69ghmQ6iEnRhNYmEG3PzgNtP2vIqb+a2UJvLh26ZB2p21BxYgeZIIVm+X6uEZpDkx/ZaZ0kSRl3mWC0S47ADkD+yEHsnbn0HoG20NxWqCnlAFLt+AzikYxE73YENcNrKvkz545DItEOOnKOlL3gmyPLinvLeabBifbCc84HNU=
