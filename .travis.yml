@@ -4,4 +4,5 @@ services:
     - docker
 
 script:
-    - docker build -t odarbelaeze/quotes:$TRAVIS_COMMIT
+    - docker build -t odarbelaeze/quotes:$TRAVIS_COMMIT .
+    - docker images
