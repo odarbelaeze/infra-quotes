@@ -21,6 +21,8 @@ class RandomQuoteResource(object):
         self.storage = Storage()
 
     def on_get(self, req, res):
+        if random.random() < 0.5:
+            raise SyntaxError('Not a chance')
         res.media = {
             'data': self.storage.random(),
         }
